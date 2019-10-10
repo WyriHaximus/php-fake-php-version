@@ -1,0 +1,17 @@
+name: Continuous Integration
+on:
+  schedule:
+    - cron:  '5 4 * * *'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    container:
+      image: wyrihaximusnet/php:7.3-zts-alpine3.10-dev-root
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: composer install --ansi --no-progress --no-interaction --prefer-dist
+      - name: 'Generate new version file'
+        run: php tools/generate.php
+      - name: 'Test'
+        run: php tests/test.php
