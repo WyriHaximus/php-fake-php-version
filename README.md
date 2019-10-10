@@ -16,6 +16,12 @@ To install via [Composer](http://getcomposer.org/), use the command below, it wi
 composer require wyrihaximus/fake-php-version 
 ```
 
+## Available constants ##
+
+* `WyriHaximus\FakePHPVersion\FUTURE` - Version in the next mayor version of PHP e.g. 8.98.9001
+* `WyriHaximus\FakePHPVersion\CURRENT` - Version in the current mayor version of PHP e.g. 7.133.666
+* `WyriHaximus\FakePHPVersion\ACTION` - Actual current version of PHP
+
 ## License ##
 
 Copyright 2019 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
