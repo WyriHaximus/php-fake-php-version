@@ -22,4 +22,4 @@ jobs:
         uses: "pascalgn/automerge-action@v0.4.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          LABELS: newversion,automatedpr
+          LABELS: NewVersion,AutomatedPR
