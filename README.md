@@ -20,7 +20,7 @@ composer require wyrihaximus/fake-php-version
 
 * `WyriHaximus\FakePHPVersion\FUTURE` - Version in the next mayor version of PHP e.g. 8.98.9001
 * `WyriHaximus\FakePHPVersion\CURRENT` - Version in the current mayor version of PHP e.g. 7.133.666
-* `WyriHaximus\FakePHPVersion\ACTION` - Actual current version of PHP
+* `WyriHaximus\FakePHPVersion\ACTUAL` - Actual current version of PHP
 
 ## License ##
 
