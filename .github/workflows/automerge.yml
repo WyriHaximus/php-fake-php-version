@@ -33,3 +33,10 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           LABELS: automerge
           MERGE_FORKS: false
+      - name: 'Close Milestone'
+        uses: "WyriHaximus/github-action-close-milestone@master"
+        if: steps.waitforstatuschecks.outputs.status == 'success' && github.event.pull_request.milestone.number > 0
+        with:
+          number: ${{ github.event.pull_request.milestone.number }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
