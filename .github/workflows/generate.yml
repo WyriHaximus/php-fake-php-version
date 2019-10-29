@@ -43,14 +43,13 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Set environment variables
-        uses: wyrihaximusnet/php:7.3-zts-alpine3.10-dev-root
-        with:
-          number: ${{ steps.createmilestone.outputs.number }}
+        env:
+          NUMBER: ${{ steps.createmilestone.outputs.number }}
         run: |
           echo ::set-env name=PULL_REQUEST_TITLE::"[New Version] Update versions file $(date +%d-%m-%Y)"
           echo ::set-env name=PULL_REQUEST_BODY::"This PR was auto-generated on $(date +%d-%m-%Y) to bump the version constants."
-          if [ $(echo $INPUT_NUMBER | wc -c) -eq 1 ] || [ -z $INPUT_NUMBER ] ; then
-            echo ::set-env name=PULL_REQUEST_MILESTONE::${INPUT_NUMBER}
+          if [ $(echo $NUMBER | wc -c) -eq 1 ] || [ -z $NUMBER ] ; then
+            echo ::set-env name=PULL_REQUEST_MILESTONE::${NUMBER}
           fi
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v1.5.1
