@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Generate
 on:
   schedule:
     - cron:  '5 4 * * *'
