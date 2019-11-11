@@ -31,7 +31,7 @@ jobs:
         if: steps.waitforstatuschecks.outputs.status == 'success'
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          LABELS: automerge
+          MERGE_LABELS: automerge
           MERGE_FORKS: false
       - name: 'Close Milestone'
         uses: "WyriHaximus/github-action-close-milestone@master"
