@@ -18,4 +18,5 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
+      - run: cat $GITHUB_EVENT_PATH
       - run: echo -e "${{ github.event.pull_request.milestone.number }}"
