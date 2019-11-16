@@ -1,0 +1,16 @@
+name: Close Milestone
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  close-milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Close Milestone'
+        uses: "WyriHaximus/github-action-close-milestone@master"
+        if: github.event.pull_request.milestone.number > 0 && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'New Version')
+        with:
+          number: ${{ github.event.pull_request.milestone.number }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
