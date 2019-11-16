@@ -20,3 +20,4 @@ jobs:
     steps:
       - run: cat $GITHUB_EVENT_PATH
       - run: echo -e "${{ github.event.pull_request.milestone.number }}"
+        if: steps.waitforstatuschecks.outputs.status == 'success' && github.event.pull_request.milestone.number > 0
