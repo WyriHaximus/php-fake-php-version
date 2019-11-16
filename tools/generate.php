@@ -59,6 +59,12 @@ foreach ($versions as $version) {
                 echo 'Future: ', $futureVersion, PHP_EOL;
                 echo 'Current: ', $currentVersion, PHP_EOL;
 
+                if (strlen(getenv('GITHUB_REF')) > 0) {
+                    echo '::set-output name=future::', $futureVersion, PHP_EOL;
+                    echo '::set-output name=current::', $currentVersion, PHP_EOL;
+                    echo '::set-output name=actual::', $actualVersion, PHP_EOL;
+                }
+
                 file_put_contents(
                     dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'versions.php',
                     "<?php\r\n\r\nnamespace WyriHaximus\FakePHPVersion;\r\n\r\nconst FUTURE = '" . $futureVersion . "';\r\nconst CURRENT = '" . $currentVersion . "';\r\nconst ACTUAL = '" . $actualVersion . "';\r\n"
