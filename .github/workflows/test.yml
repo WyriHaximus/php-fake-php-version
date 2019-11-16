@@ -20,4 +20,4 @@ jobs:
     steps:
       - run: cat $GITHUB_EVENT_PATH
       - run: echo -e "${{ github.event.pull_request.milestone.number }}"
-        if: github.event.pull_request.milestone.number != null
+        if: github.event.pull_request.milestone.number > 0
