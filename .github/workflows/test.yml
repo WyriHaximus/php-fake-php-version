@@ -1,4 +1,4 @@
-name: Auto Merge
+name: Test
 on:
   pull_request:
     types:
