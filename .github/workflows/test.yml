@@ -1,8 +1,6 @@
 name: Test
 on:
   pull_request:
-    types:
-      - status
   pull_request_review:
     types:
       - submitted
@@ -11,4 +9,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - run: cat $GITHUB_EVENT_PATH
       - run: echo -e "${{ github.event.pull_request.milestone.number }}"
