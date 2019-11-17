@@ -1,7 +1,7 @@
 name: Generate
 on:
   schedule:
-    - cron:  '42 * * * *'
+    - cron:  '49 * * * *'
 jobs:
   qa:
     runs-on: ubuntu-latest
