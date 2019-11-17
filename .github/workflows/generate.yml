@@ -35,13 +35,6 @@ jobs:
         uses: "WyriHaximus/github-action-next-semvers@master"
         with:
           version: ${{ steps.previoustag.outputs.tag }}
-      - name: Set environment variables
-        env:
-          NUMBER: ${{ steps.createmilestone.outputs.number }}
-        run: |
-          echo ::set-env name=PULL_REQUEST_TITLE::"[New Version] Update versions file to PHP ${{ steps.generate.actual }}"
-          echo ::set-env name=PULL_REQUEST_BODY::"With the release of PHP ${{ steps.generate.actual }} this packages needs updating. So this PR will bump current to ${{ steps.generate.current }} and future to ${{ steps.generate.future }}."
-          echo ::set-env name=PULL_REQUEST_MILESTONE::"${NUMBER}"
       - name: 'Create new milestone'
         id: createmilestone
         if: steps.fileschangedsinceprevioustag.outputs.files == ''
@@ -51,6 +44,13 @@ jobs:
           description: ${{ env.PULL_REQUEST_BODY }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Set environment variables
+        env:
+          NUMBER: ${{ steps.createmilestone.outputs.number }}
+        run: |
+          echo ::set-env name=PULL_REQUEST_TITLE::"[New Version] Update versions file to PHP ${{ steps.generate.actual }}"
+          echo ::set-env name=PULL_REQUEST_BODY::"With the release of PHP ${{ steps.generate.actual }} this packages needs updating. So this PR will bump current to ${{ steps.generate.current }} and future to ${{ steps.generate.future }}."
+          echo ::set-env name=PULL_REQUEST_MILESTONE::"${NUMBER}"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v1.5.1
         env:
