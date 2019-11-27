@@ -2,6 +2,6 @@
 
 namespace WyriHaximus\FakePHPVersion;
 
-const FUTURE = '8.77.61';
-const CURRENT = '7.84.64';
-const ACTUAL = '7.3.11';
+const FUTURE = '8.93.77';
+const CURRENT = '7.100.84';
+const ACTUAL = '7.4.0';
