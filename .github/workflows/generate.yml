@@ -20,7 +20,7 @@ jobs:
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@master"
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.AUTH_TOKEN }}"
       - name: 'Get files changed since previous tag'
         id: fileschangedsinceprevioustag
         uses: "WyriHaximus/github-action-files-in-commit@master"
@@ -28,7 +28,7 @@ jobs:
           baseSha: ${{ steps.previoustag.outputs.tag }}
           headSha: HEAD
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.AUTH_TOKEN }}"
       - name: 'Get next minor version'
         id: semvers
         if: steps.fileschangedsinceprevioustag.outputs.files == ''
@@ -43,7 +43,7 @@ jobs:
           title: ${{ steps.semvers.outputs.patch }}
           description: ${{ env.PULL_REQUEST_BODY }}
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.AUTH_TOKEN }}"
       - name: Set environment variables
         env:
           NUMBER: ${{ steps.createmilestone.outputs.number }}
@@ -54,5 +54,5 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v1.5.1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
           PULL_REQUEST_LABELS: Automated PR, New Version, automerge
