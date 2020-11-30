@@ -44,15 +44,11 @@ jobs:
           description: ${{ env.PULL_REQUEST_BODY }}
         env:
           GITHUB_TOKEN: "${{ secrets.AUTH_TOKEN }}"
-      - name: Set environment variables
-        env:
-          NUMBER: ${{ steps.createmilestone.outputs.number }}
-        run: |
-          echo ::set-env name=PULL_REQUEST_TITLE::"[New Version] Update versions file to PHP ${{ steps.generate.actual }}"
-          echo ::set-env name=PULL_REQUEST_BODY::"With the release of PHP ${{ steps.generate.actual }} this packages needs updating. So this PR will bump current to ${{ steps.generate.current }} and future to ${{ steps.generate.future }}."
-          echo ::set-env name=PULL_REQUEST_MILESTONE::"${NUMBER}"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v1.5.1
         env:
           GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
           PULL_REQUEST_LABELS: Automated PR, New Version, automerge
+          PULL_REQUEST_TITLE: "[New Version] Update versions file to PHP ${{ steps.generate.outputs.actual }}"
+          PULL_REQUEST_BODY: "With the release of PHP ${{ steps.generate.outputs.actual }} this packages needs updating. So this PR will bump current to ${{ steps.generate.outputs.current }} and future to ${{ steps.generate.outputs.future }}."
+          PULL_REQUEST_MILESTONE: ${{ steps.createmilestone.outputs.number }}
