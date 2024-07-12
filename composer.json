@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": "^7.0",
+    "php": "^8 || ^7",
     "wyrihaximus/simple-twig": "^2 || ^1"
   },
   "config": {
