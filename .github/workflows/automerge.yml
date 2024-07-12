@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.AUTH_TOKEN }}"
       - name: 'Merge'
-        uses: "pascalgn/automerge-action@v0.14.2"
+        uses: "pascalgn/automerge-action@v0.16.3"
         if: steps.waitforstatuschecks.outputs.status == 'success'
         env:
           GITHUB_TOKEN: "${{ secrets.AUTH_TOKEN }}"
