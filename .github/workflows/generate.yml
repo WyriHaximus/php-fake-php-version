@@ -6,7 +6,7 @@ jobs:
   qa:
     runs-on: ubuntu-latest
     container:
-      image: wyrihaximusnet/php:7.3-zts-alpine3.10-dev-root
+      image: wyrihaximusnet/php:7.4-zts-alpine3.10-dev-root
     steps:
       - uses: actions/checkout@v2
         with:
