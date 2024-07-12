@@ -3,13 +3,30 @@ on:
   push:
   pull_request:
 jobs:
-  qa:
+  supported-versions-matrix:
+    name: Supported Versions Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      lowest: ${{ steps.supported-versions-matrix.outputs.lowest }}
+      version: ${{ steps.supported-versions-matrix.outputs.version }}
+      upcoming: ${{ steps.supported-versions-matrix.outputs.upcoming }}
+      extensions: ${{ steps.supported-versions-matrix.outputs.extensions }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: supported-versions-matrix
+        uses: WyriHaximus/github-action-composer-php-versions-in-range@v1
+        with:
+          upcomingReleases: true
+  test:
+    needs:
+      - supported-versions-matrix
     strategy:
+      fail-fast: false
       matrix:
-        php: [7.3]
+        php: ${{ fromJson(needs.supported-versions-matrix.outputs.version) }}
     runs-on: ubuntu-latest
     container:
-      image: wyrihaximusnet/php:${{ matrix.php }}-zts-alpine3.10-dev-root
+      image: ghcr.io/wyrihaximusnet/php:${{ matrix.php }}-nts-alpine-dev-root
     steps:
       - uses: actions/checkout@v1
       - name: Install Dependencies

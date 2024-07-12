@@ -10,12 +10,12 @@
     }
   ],
   "require": {
-    "php": "^8 || ^7",
+    "php": "^8 || ^7.4",
     "wyrihaximus/simple-twig": "^2 || ^1"
   },
   "config": {
     "platform": {
-      "php": "7.0"
+      "php": "7.4.13"
     },
     "sort-packages": true
   },
