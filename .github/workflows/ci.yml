@@ -28,7 +28,7 @@ jobs:
     container:
       image: ghcr.io/wyrihaximusnet/php:${{ matrix.php }}-nts-alpine-dev-root
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Install Dependencies
         run: composer install --ansi --no-progress --no-interaction --prefer-dist
       - name: 'Test'
