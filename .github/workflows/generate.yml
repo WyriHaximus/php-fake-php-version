@@ -3,10 +3,23 @@ on:
   schedule:
     - cron:  '49 * * * *'
 jobs:
+  supported-versions-matrix:
+    name: Supported Versions Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      lowest: ${{ steps.supported-versions-matrix.outputs.lowest }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: supported-versions-matrix
+        uses: WyriHaximus/github-action-composer-php-versions-in-range@v1
+        with:
+          upcomingReleases: true
   qa:
+    needs:
+      - supported-versions-matrix
     runs-on: ubuntu-latest
     container:
-      image: wyrihaximusnet/php:7.4-zts-alpine3.10-dev-root
+      image: wyrihaximusnet/php:${{ needs.supported-versions-matrix.outputs.lowest }}-zts-alpine-dev-root
     steps:
       - uses: actions/checkout@v4
         with:
