@@ -20,6 +20,9 @@
     "sort-packages": true
   },
   "autoload": {
+    "psr-4": {
+      "WyriHaximus\\FakePHPVersion\\": "src/"
+    },
     "files": [
       "src/versions_include.php"
     ]

@@ -1,10 +1,10 @@
 <?php
 
-use const WyriHaximus\FakePHPVersion\ACTUAL;
-use const WyriHaximus\FakePHPVersion\CURRENT;
-use const WyriHaximus\FakePHPVersion\FUTURE;
+use WyriHaximus\FakePHPVersion\Versions;
 
-require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'versions_include.php';
+use function WyriHaximus\Twig\render;
+
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 $context = stream_context_create([
     'http' => [
@@ -23,12 +23,12 @@ foreach ($versions as $version) {
             if (count($shouldBe3) === 3) {
                 $actualVersion = implode('.', $shouldBe3);
 
-                if (ACTUAL === $actualVersion) {
+                if (Versions::ACTUAL === $actualVersion) {
                     echo 'No new version detected, better luck next time!', PHP_EOL;
                     exit(2);
                 }
 
-                $constantFutureVersion = explode('.', FUTURE);
+                $constantFutureVersion = explode('.', Versions::FUTURE);
                 $futureVersion = $shouldBe3;
                 $futureVersion[0]++;
                 if ($futureVersion[0] === $shouldBe3[0]) {
@@ -41,7 +41,7 @@ foreach ($versions as $version) {
                 $futureVersion[2] += $constantFutureVersion[1];
                 $futureVersion = implode('.', $futureVersion);
 
-                $constantCurrentVersion = explode('.', CURRENT);
+                $constantCurrentVersion = explode('.', Versions::CURRENT);
                 $currentVersion = $shouldBe3;
                 if ($currentVersion[0] !== $shouldBe3[0]) {
                     $currentVersion[0]++;
@@ -67,7 +67,29 @@ foreach ($versions as $version) {
 
                 file_put_contents(
                     dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'versions.php',
-                    "<?php\r\n\r\nnamespace WyriHaximus\FakePHPVersion;\r\n\r\nconst FUTURE = '" . $futureVersion . "';\r\nconst CURRENT = '" . $currentVersion . "';\r\nconst ACTUAL = '" . $actualVersion . "';\r\n"
+                    render(
+                        file_get_contents(
+                            dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc' . DIRECTORY_SEPARATOR . 'versions.php.twig',
+                        ),
+                        [
+                            'future' => $futureVersion,
+                            'current' => $currentVersion,
+                            'actual' => $actualVersion,
+                        ]
+                    ),
+                );
+                file_put_contents(
+                    dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Versions.php',
+                    render(
+                        file_get_contents(
+                            dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc' . DIRECTORY_SEPARATOR . 'Versions.php.twig',
+                        ),
+                        [
+                            'future' => $futureVersion,
+                            'current' => $currentVersion,
+                            'actual' => $actualVersion,
+                        ]
+                    ),
                 );
                 exit(0);
             }

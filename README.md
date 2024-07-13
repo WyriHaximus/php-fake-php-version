@@ -18,9 +18,13 @@ composer require wyrihaximus/fake-php-version
 
 ## Available constants ##
 
-* `WyriHaximus\FakePHPVersion\FUTURE` - Version in the next mayor version of PHP e.g. 8.98.9001
-* `WyriHaximus\FakePHPVersion\CURRENT` - Version in the current mayor version of PHP e.g. 7.133.666
-* `WyriHaximus\FakePHPVersion\ACTUAL` - Actual current version of PHP
+* `WyriHaximus\FakePHPVersion\Versions::FUTURE` - Version in the next mayor version of PHP e.g. 8.98.9001
+* `WyriHaximus\FakePHPVersion\Versions::CURRENT` - Version in the current mayor version of PHP e.g. 7.133.666
+* `WyriHaximus\FakePHPVersion\Versions::ACTUAL` - Actual current version of PHP
+
+The `WyriHaximus\FakePHPVersion\FUTURE`, `WyriHaximus\FakePHPVersion\Versions::CURRENT`, and 
+`WyriHaximus\FakePHPVersion\Versions::ACTUAL` constants are still available but deprecated. v2 will drop them and be 
+`Versions` class only.
 
 ## License ##
 
