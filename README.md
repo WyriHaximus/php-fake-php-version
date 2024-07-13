@@ -1,7 +1,7 @@
 php-fake-php-version
 ==============
 
-[![Build Status](https://travis-ci.com/WyriHaximus/php-fake-php-version.png)](https://travis-ci.com/WyriHaximus/php-fake-php-version)
+[![Continuous Integration](https://github.com/WyriHaximus/php-fake-php-version/actions/workflows/ci.yml/badge.svg)](https://github.com/WyriHaximus/php-fake-php-version/actions/workflows/ci.yml)
 [![Latest Stable Version](https://poser.pugx.org/WyriHaximus/fake-php-version/v/stable.png)](https://packagist.org/packages/WyriHaximus/fake-php-version)
 [![Total Downloads](https://poser.pugx.org/WyriHaximus/fake-php-version/downloads.png)](https://packagist.org/packages/WyriHaximus/fake-php-version)
 [![License](https://poser.pugx.org/wyrihaximus/fake-php-version/license.png)](https://packagist.org/packages/wyrihaximus/fake-php-version)
@@ -24,7 +24,7 @@ composer require wyrihaximus/fake-php-version
 
 ## License ##
 
-Copyright 2019 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
+Copyright 2024 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
