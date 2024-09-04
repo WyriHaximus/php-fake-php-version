@@ -14,7 +14,8 @@ jobs:
         uses: WyriHaximus/github-action-composer-php-versions-in-range@v1
         with:
           upcomingReleases: true
-  qa:
+  generate:
+    name: Generate
     needs:
       - supported-versions-matrix
     runs-on: ubuntu-latest
@@ -24,6 +25,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - run: git config --global --add safe.directory $GITHUB_WORKSPACE # Do this ourself because `actions/checkout@v4 doesn't succeed in doing this
       - name: Install Dependencies
         run: composer install --ansi --no-progress --no-interaction --prefer-dist
       - name: Generate new version file
