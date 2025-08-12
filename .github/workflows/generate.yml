@@ -9,9 +9,9 @@ jobs:
     outputs:
       lowest: ${{ steps.supported-versions-matrix.outputs.lowest }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - id: supported-versions-matrix
-        uses: WyriHaximus/github-action-composer-php-versions-in-range@v1
+        uses: WyriHaximus/github-action-composer-php-versions-in-range@ea3d54bf7909d5607c4f32bda9cd8d64e420ec99 # v1
         with:
           upcomingReleases: true
   generate:
@@ -22,7 +22,7 @@ jobs:
     container:
       image: wyrihaximusnet/php:${{ needs.supported-versions-matrix.outputs.lowest }}-zts-alpine-dev-root
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
         with:
           fetch-depth: 0
       - run: git config --global --add safe.directory $GITHUB_WORKSPACE # Do this ourself because `actions/checkout@v4 doesn't succeed in doing this
@@ -62,7 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.AUTH_TOKEN }}"
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
           token: ${{ secrets.AUTH_TOKEN }}
           labels: |
