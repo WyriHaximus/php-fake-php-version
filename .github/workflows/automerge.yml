@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: 'Wait for status checks'
         id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@b809158b20d3e32350fe2d868a124f7f2e0e4253" # v1
+        uses: "WyriHaximus/github-action-wait-for-status@a0d59308face45c8229ad5aef809d6df5a0c7620" # v1.8.0
         with:
           ignoreActions: automerge
           checkInterval: 13
