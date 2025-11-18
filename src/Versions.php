@@ -4,7 +4,7 @@ namespace WyriHaximus\FakePHPVersion;
 
 final class Versions
 {
-    const FUTURE = '9.648.686';
-    const CURRENT = '8.728.750';
-    const ACTUAL = '8.4.14';
+    const FUTURE = '9.663.648';
+    const CURRENT = '8.733.728';
+    const ACTUAL = '8.5.0';
 }
