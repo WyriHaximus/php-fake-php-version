@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
       - id: supported-versions-matrix
-        uses: WyriHaximus/github-action-composer-php-versions-in-range@ea3d54bf7909d5607c4f32bda9cd8d64e420ec99 # v1.14.0
+        uses: WyriHaximus/github-action-composer-php-versions-in-range@1eff3298ad218e34b77fbda04efdcb4a38bb1a6a # v1.16.0
         with:
           upcomingReleases: true
   generate:
