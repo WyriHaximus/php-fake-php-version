@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Close Milestone'
-        uses: "WyriHaximus/github-action-close-milestone@master"
+        uses: "WyriHaximus/github-action-close-milestone@239910f8521df11f5199e4cf26743c38197ff758" # master
         if: github.event.pull_request.milestone.number > 0 && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'New Version')
         with:
           number: ${{ github.event.pull_request.milestone.number }}
